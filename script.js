@@ -1,7 +1,7 @@
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 const img = new Image();
-img.src = '/Users/hugoalves/code/secret story/original.JPG';
+img.src = './original.JPG';
 
 let text = '';
 let isTyping = false;
@@ -11,6 +11,10 @@ img.onload = function() {
     canvas.height = img.height;
     document.body.appendChild(canvas);
     drawImage();
+};
+
+img.onerror = function() {
+    console.error('Error loading image:', img.src);
 };
 
 canvas.addEventListener('click', startTyping);
@@ -105,4 +109,8 @@ function downloadImage() {
     link.click();
 }
 
-window.downloadImage = downloadImage;
+// Add this at the end of the file
+document.getElementById('downloadBtn').addEventListener('click', downloadImage);
+
+// Remove or comment out this line as it's no longer needed
+// window.downloadImage = downloadImage;
